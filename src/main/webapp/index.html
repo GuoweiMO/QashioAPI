@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){ 
+                $.ajax({
+                    method: "POST",
+                    url: "http://localhost:8080/RaketAPI/getConferenceList",
+                    data: { categoryId: 1 , categoryName: "" , timeStart: "",  timeEnd: "",  location: [] },
+                    success: function(response){
+                        $("body").html(response);
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        
+        <h1>My Hello World!</h1>
+    </body>
+    
+</html>
