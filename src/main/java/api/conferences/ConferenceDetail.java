@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guoweim
  */
-@WebServlet(name = "ConferenceDetail", urlPatterns = {"/RaketAPI/getConferenceDetail"})
+@WebServlet(name = "ConferenceDetail", urlPatterns = {"/getConferenceDetail"})
 public class ConferenceDetail extends HttpServlet {
 
     /**
