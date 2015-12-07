@@ -114,7 +114,7 @@ public class WebData extends HttpServlet{
                 
                 conferenceList.add(conference);
                 
-                this.updateDataToDB(conference);
+//                this.updateDataToDB(conference);
             }
             for(Map conf: conferenceList){
                 System.out.println(conf.toString());

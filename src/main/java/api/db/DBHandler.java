@@ -17,7 +17,7 @@ public class DBHandler {
     private final String USERNAME = "root";
     private final String PASSWORD = "b7DmW8Gc81HH";
     private final String DRIVER = "com.mysql.jdbc.Driver";
-    private final String URL = "jdbc:mysql://198.100.146.69:3306/mysql";
+    private final String URL = "jdbc:mysql://198.100.146.69:3306/guowei";
 
     private Connection connection;
 
