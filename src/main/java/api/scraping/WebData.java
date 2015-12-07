@@ -32,7 +32,7 @@ import org.jsoup.select.Elements;
  *
  * @author guoweim
  */
-@WebServlet(name = "WebData", urlPatterns = {"/RaketAPI/getWebData"})
+@WebServlet(name = "WebData", urlPatterns = {"/getWebData"})
 public class WebData extends HttpServlet{
     
     static final String confer_Name = "name"; 
@@ -146,7 +146,7 @@ public class WebData extends HttpServlet{
 //                    "INSERT INTO Rakett_ProConferences(name, venue, city, startTime, endTime, description) " +
 //                            "VALUES(?,?,?,?,?,?) )\n";
         
-        "INSERT INTO Rakett_ProConferences(name, venue, city, startTime, endTime, description) " +
+        "INSERT INTO Qashio_Conferences(name, venue, city, startTime, endTime, description) " +
                             "VALUES(?,?,?,?,?,?) " +
         "ON DUPLICATE KEY  UPDATE venue=?, city=?, startTime=?, endTime=?, description=?";     
 

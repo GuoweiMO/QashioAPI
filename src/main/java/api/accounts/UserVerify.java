@@ -5,7 +5,6 @@
  */
 package api.accounts;
 
-import api.conferences.ConferenceList;
 import api.db.DBHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,18 +56,20 @@ public class UserVerify extends HttpServlet {
         Map<String,Object> outcome = new HashMap<>();
         JSONObject output = new JSONObject();
         
-        if(methodType.equals("check")){
-            outcome = this.checkUserInfo(clientUserName,clientPassword);
-            output = new JSONObject(outcome);
-        } else if(methodType.equals("add")){
-            
-        }else{
-            
+        switch (methodType) {
+            case "check":
+                outcome = this.checkUserInfo(clientUserName,clientPassword);
+                output = new JSONObject(outcome);
+                break;
+            case "add":
+                break;
+            default:
+                break;
         }
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println(outcome.toString());
+            out.println(output.toString());
         }
     }
 
@@ -130,7 +131,7 @@ public class UserVerify extends HttpServlet {
             results = db.findSingleResult(queryStr, paras);
             if(results.get("userName") != null){
                 String dbPassword= results.get("password").toString();
-                if(dbPassword != null && dbPassword.trim().equals(password.trim())){
+                if(dbPassword != null && (dbPassword.trim() == null ? password.trim() == null : dbPassword.trim().equals(password.trim()))){
                     checkOutcome.replace("success", true);
                 } else{
                     checkOutcome.replace("success", false);
