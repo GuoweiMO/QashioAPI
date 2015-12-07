@@ -8,8 +8,8 @@
             $(document).ready(function(){ 
                 $.ajax({
                     method: "POST",
-                    url: "http://localhost:8080/RaketAPI/getConferenceList",
-                    data: { categoryId: 1 , categoryName: "" , timeStart: "",  timeEnd: "",  location: [] },
+                    url: "http://localhost:8080/verify",
+                    data: { username: "001" , password: "111" , type: "check"},
                     success: function(response){
                         $("body").html(response);
                     }

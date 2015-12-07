@@ -66,7 +66,7 @@ public class DBHandler {
         pstmt = connection.prepareStatement(sql);
 
         int index = 1;
-        if(paras!=null && paras.isEmpty()){
+        if(paras!=null && !paras.isEmpty()){
             for (Object para : paras) {
                 pstmt.setObject(index++, para);
             }

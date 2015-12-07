@@ -7,6 +7,7 @@ package api.scraping;
 
 import api.db.DBHandler;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -32,7 +33,7 @@ import org.jsoup.select.Elements;
  *
  * @author guoweim
  */
-@WebServlet(name = "WebData", urlPatterns = {"/RaketAPI/getWebData"})
+@WebServlet(name = "WebData", urlPatterns = {"/getWebData"})
 public class WebData extends HttpServlet{
     
     static final String confer_Name = "name"; 
@@ -42,13 +43,14 @@ public class WebData extends HttpServlet{
     static final String confer_EndTime = "endTime"; 
     static final String confer_Description = "description"; 
     static DBHandler db;
+    Connection connection;
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config); //To change body of generated methods, choose Tools | Templates.
         
         System.out.println("WebData grabing is running.");
         db = new DBHandler();
-        db.getConnection();
+        connection = db.getConnection();
         
         for(int i = 1; i< 2 ; i++){
             this.parseWebData("http://www.allconferences.com/search/index/Category__parent_id:1/showLastConference:0/page:"+ i);
@@ -146,7 +148,7 @@ public class WebData extends HttpServlet{
 //                    "INSERT INTO Rakett_ProConferences(name, venue, city, startTime, endTime, description) " +
 //                            "VALUES(?,?,?,?,?,?) )\n";
         
-        "INSERT INTO Rakett_ProConferences(name, venue, city, startTime, endTime, description) " +
+        "INSERT INTO Qashio_Conferences(name, venue, city, startTime, endTime, description) " +
                             "VALUES(?,?,?,?,?,?) " +
         "ON DUPLICATE KEY  UPDATE venue=?, city=?, startTime=?, endTime=?, description=?";     
 
@@ -173,6 +175,7 @@ public class WebData extends HttpServlet{
         try {
             flag = db.updateByPrepStmt(sqlStr, paras);
             System.out.println(flag);
+            connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(WebData.class.getName()).log(Level.SEVERE, null, ex);
         }

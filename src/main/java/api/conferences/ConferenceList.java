@@ -30,7 +30,7 @@ import org.json.simple.JSONObject;
  *
  * @author guoweim
  */
-@WebServlet(name = "ConferenceList", urlPatterns = {"/RaketAPI/getConferenceList"})
+@WebServlet(name = "ConferenceList", urlPatterns = {"/getConferenceList"})
 public class ConferenceList extends HttpServlet {
     
     DBHandler db;

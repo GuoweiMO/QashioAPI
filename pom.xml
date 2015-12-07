@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.guowei</groupId>
-    <artifactId>RaketAPI</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>QashioAPI</artifactId>
+    <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>RaketAPI</name>
+    <name>QashioAPI</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
