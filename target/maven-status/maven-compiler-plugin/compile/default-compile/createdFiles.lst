@@ -1,5 +1,0 @@
-api/conferences/ConferenceList.class
-api/db/DBHandler.class
-api/conferences/ConferenceDetail.class
-api/scraping/WebData.class
-api/accounts/UserVerify.class

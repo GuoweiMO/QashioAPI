@@ -9,7 +9,7 @@
                 $.ajax({
                     method: "POST",
                     url: "http://localhost:8080/verify",
-                    data: { username: "001" , password: "111" , type: "add"},
+                    data: { username: "user_003" , password: "12345" , type: "add"},
                     success: function(response){
                         $("body").html(response);
                     }

@@ -156,12 +156,14 @@ public class UserVerify extends HttpServlet {
     }
     
     public Map<String,Object> addUserInfo(String userName, String password){
-        String queryStr = "SELECT * FROM Qashio_UserInfos WHERE userName="+userName;
+        String queryStr = "SELECT * FROM Qashio_UserInfos WHERE userName=?";
         String updateStr = "INSERT INTO Qashio_UserInfos (userName, password, sessionId) VALUES (?,?,?)";
         Map<String,Object> results = new HashMap<>();
         Map<String,Object> checkOutcome = new HashMap<>();
         List<Object> paras = new ArrayList<>();
+        List<Object> para = new ArrayList<>();
         paras.add(userName);
+        para.add(userName);
         paras.add(password);
         paras.add(System.currentTimeMillis());
 
@@ -170,7 +172,7 @@ public class UserVerify extends HttpServlet {
             checkOutcome.put("method", "add");
             checkOutcome.put("msg", "");
             checkOutcome.put("sessionId", System.currentTimeMillis());
-            results = db.findSingleResult(queryStr, null);
+            results = db.findSingleResult(queryStr, para);
             if(results.get("userName") != null){
                 checkOutcome.replace("msg", "User already registered!");
             }
