@@ -43,14 +43,13 @@ public class WebData extends HttpServlet{
     static final String confer_EndTime = "endTime"; 
     static final String confer_Description = "description"; 
     static DBHandler db;
-    Connection connection;
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config); //To change body of generated methods, choose Tools | Templates.
         
         System.out.println("WebData grabing is running.");
         db = new DBHandler();
-        connection = db.getConnection();
+        db.getConnection();
         
         for(int i = 1; i< 2 ; i++){
             this.parseWebData("http://www.allconferences.com/search/index/Category__parent_id:1/showLastConference:0/page:"+ i);
@@ -175,7 +174,7 @@ public class WebData extends HttpServlet{
         try {
             flag = db.updateByPrepStmt(sqlStr, paras);
             System.out.println(flag);
-            connection.close();
+            db.connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(WebData.class.getName()).log(Level.SEVERE, null, ex);
         }

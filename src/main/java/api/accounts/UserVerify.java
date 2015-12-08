@@ -64,6 +64,8 @@ public class UserVerify extends HttpServlet {
                 output = new JSONObject(outcome);
                 break;
             case "add":
+                outcome = this.addUserInfo(clientUserName,clientPassword);
+                output = new JSONObject(outcome);
                 break;
             default:
                 break;
@@ -129,10 +131,11 @@ public class UserVerify extends HttpServlet {
         try {
             checkOutcome.put("success", false);
             checkOutcome.put("msg", "");
+            checkOutcome.put("method", "check");
             checkOutcome.put("sessionId", System.currentTimeMillis());
             results = db.findSingleResult(queryStr, paras);
             System.out.println("here"+results);
-            db.connection.close();
+//            db.connection.close();
             if(results.get("userName") != null){
                 String dbPassword= results.get("password").toString();
                 if(dbPassword != null && (dbPassword.trim() == null ? password.trim() == null : dbPassword.trim().equals(password.trim()))){
@@ -144,6 +147,42 @@ public class UserVerify extends HttpServlet {
             }else{
                 checkOutcome.replace("success", false);
                 checkOutcome.replace("msg", "username not exist");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserVerify.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return checkOutcome;
+    }
+    
+    public Map<String,Object> addUserInfo(String userName, String password){
+        String queryStr = "SELECT * FROM Qashio_UserInfos WHERE userName="+userName;
+        String updateStr = "INSERT INTO Qashio_UserInfos (userName, password, sessionId) VALUES (?,?,?)";
+        Map<String,Object> results = new HashMap<>();
+        Map<String,Object> checkOutcome = new HashMap<>();
+        List<Object> paras = new ArrayList<>();
+        paras.add(userName);
+        paras.add(password);
+        paras.add(System.currentTimeMillis());
+
+        try {
+            checkOutcome.put("success", false);
+            checkOutcome.put("method", "add");
+            checkOutcome.put("msg", "");
+            checkOutcome.put("sessionId", System.currentTimeMillis());
+            results = db.findSingleResult(queryStr, null);
+            if(results.get("userName") != null){
+                checkOutcome.replace("msg", "User already registered!");
+            }
+            else{
+                Boolean flag = db.updateByPrepStmt(updateStr, paras);
+                System.out.println("update: "+flag);
+    //            db.connection.close();
+                if(flag){
+                    checkOutcome.replace("success", true);
+                }else{
+                    checkOutcome.replace("msg", "update failure");
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserVerify.class.getName()).log(Level.SEVERE, null, ex);
