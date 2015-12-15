@@ -174,7 +174,6 @@ public class WebData extends HttpServlet{
         try {
             flag = db.updateByPrepStmt(sqlStr, paras);
             System.out.println(flag);
-            db.connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(WebData.class.getName()).log(Level.SEVERE, null, ex);
         }
