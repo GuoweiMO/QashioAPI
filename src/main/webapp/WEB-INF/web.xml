@@ -9,11 +9,11 @@
             30
         </session-timeout>
     </session-config>
-    <servlet>
+<!--    <servlet>
         <servlet-name>WebData</servlet-name>
         <servlet-class>api.scraping.WebData</servlet-class>
         <load-on-startup>1</load-on-startup>
-    </servlet>
+    </servlet>-->
 <!--    <display-name>raketAPI</display-name>
 	<servlet>
 		<description></description>
