@@ -14,10 +14,10 @@ import java.util.Map;
  * @author guoweim
  */
 public class DBHandler {
-    private final String USERNAME = "root";
-    private final String PASSWORD = "b7DmW8Gc81HH";
+    private final String USERNAME = "qashio_guowei";
+    private final String PASSWORD = "VANNyZfL";
     private final String DRIVER = "com.mysql.jdbc.Driver";
-    private final String URL = "jdbc:mysql://198.100.146.69:3306/guowei?autoReconnect=true";
+    private final String URL = "jdbc:mysql://198.100.146.69:3306/qashio_guowei";
 
     public Connection connection;
 
@@ -39,7 +39,6 @@ public class DBHandler {
             connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);            
             System.out.println("Connected to MySQL!!");
         }catch (Exception e){
-            e.printStackTrace();
         }
         return connection;
     }

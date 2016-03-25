@@ -8,8 +8,9 @@
             $(document).ready(function(){ 
                 $.ajax({
                     method: "POST",
-                    url: "http://localhost:8080/verify",
-                    data: { username: "user_003" , password: "12345" , type: "add"},
+                    url: "http://localhost:8080/swapi",
+                    data: { name: "Steve Curry" , title: "Basketball Player in GS Warriors" , email: "steve.curry@gsw.us",
+                    phone: "07928778517" , imageUrl: "www.google.com/stephen", status: "on", method:"newCard"},
                     success: function(response){
                         $("body").html(response);
                     }

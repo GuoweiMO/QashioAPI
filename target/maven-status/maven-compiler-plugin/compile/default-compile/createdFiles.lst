@@ -1,5 +1,6 @@
 api/conferences/ConferenceList.class
 api/db/DBHandler.class
+api/swipe/UserData.class
 api/conferences/ConferenceDetail.class
 api/scraping/WebData.class
 api/accounts/UserVerify.class
